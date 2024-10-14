@@ -1,5 +1,8 @@
 # system info files
-system_info.txt
+system_info.txt 
+
+# rsa private jey
+private_key.pem
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
