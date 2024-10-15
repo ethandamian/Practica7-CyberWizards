@@ -50,13 +50,16 @@ def get_files_in_home():
     write_to_file("\n=== Files in the User's Home Directory ===")
     home_path = Path.home()
     for file in home_path.rglob('*'):
-        if file.is_file():
-            file_type = "File"
-        elif file.is_dir():
-            file_type = "Directory"
-        else:
-            file_type = "Other"
-        write_to_file(f"Type: {file_type}, Name: {file.name}, Size: {file.stat().st_size} bytes")
+        try:
+            if file.is_file():
+                file_type = "File"
+            elif file.is_dir():
+                file_type = "Directory"
+            else:
+                file_type = "Other"
+            write_to_file(f"Type: {file_type}, Name: {file.name}, Size: {file.stat().st_size} bytes")
+        except FileNotFoundError:
+            write_to_file(f"Type: Unknown, Name: {file.name}, Error: File not found")
 
 if __name__ == "__main__":
     # Clear the file before writing new content.
